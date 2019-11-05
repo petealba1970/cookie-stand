@@ -9,6 +9,9 @@ var Seattle = {
         this.min = Math.floor(this.min);
         this.max = Math.ceil(this.max);
         return Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+    },
+    cookiesSoldperHour: function () {
+        return this.customers() * this.avg
     }
 }
 var Tokyo = {
@@ -21,6 +24,9 @@ var Tokyo = {
         this.min = Math.floor(this.min);
         this.max = Math.ceil(this.max);
         return Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+    },
+    cookiesSoldperHour: function () {
+        return this.customers() * this.avg
     }
 }
 
@@ -34,6 +40,9 @@ var Dubai = {
         this.min = Math.floor(this.min);
         this.max = Math.ceil(this.max);
         return Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+    },
+    cookiesSoldperHour: function () {
+        return this.customers() * this.avg
     }
 }
 var Paris = {
@@ -46,6 +55,9 @@ var Paris = {
         this.min = Math.floor(this.min);
         this.max = Math.ceil(this.max);
         return Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+    },
+    cookiesSoldperHour: function () {
+        return this.customers() * this.avg
     }
 }
 
@@ -88,17 +100,3 @@ for (var storeIndex = 0; storeIndex < storeNow.length; storeIndex++) {
 
     }
 }
-// for (var animalIndex = 0; animalIndex < animals.length; animalIndex++) {
-//     var paragrah = document.createElement('p');
-//     var currentAnimal = animals[animalIndex];
-//     paragrah.textContent = currentAnimal.name;
-
-//     dogDataDiv.append(paragrah);
-
-//     for (var barkIndex = 0; barkIndex < currentAnimal.barksPerWeek.length; barkIndex++) {
-//         // Invarint - currentAnimal will NOT CHANGE inside this loop
-//         // invariant - barkIndex will CHANGE inside this loop 
-
-//         var barkParagraph = document.createElement('p');
-//         barkParagraph.textContent = currentAnimal.barksPerWeek[barkIndex];
-//         dogDataDiv.append(barkParagraph);
