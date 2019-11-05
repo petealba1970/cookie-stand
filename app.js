@@ -44,7 +44,7 @@ var Lima = {
 }
 var StoreLocationDiv = document.getElementById('StoreLocation')
 var cookiesSoldDul = document.getElementById('Cookiessold')
-
+var totalCookiesDay = document.getElementById('totalCookies')
 //Creating arrays to store data for each store location
 var storeNow = [Seattle, Tokyo, Dubai, Paris, Lima];
 
@@ -53,8 +53,9 @@ for (var storeIndex = 0; storeIndex < storeNow.length; storeIndex++) {
     var dayTotal = 0;
     var currentLocation = storeNow[storeIndex];
     paragraph.textContent = currentLocation.name;
+
     StoreLocationDiv.append(paragraph);
-    //loop to go through data of each store per hour in the morning
+    //loop to go through data of each store per hour
     var StoreHours = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm']
     for (var EachHour = 0; EachHour < StoreHours.length; EachHour++) {
         function Customers() {
@@ -72,9 +73,12 @@ for (var storeIndex = 0; storeIndex < storeNow.length; storeIndex++) {
         var currentTime = StoreHours[EachHour];
         Hourstatement.textContent = currentTime + '   :    ' + cookiesHour + '      cookies.';
         StoreLocationDiv.append(Hourstatement);
-
+        var dayTally = document.createElement('div');
 
 
     }
-    console.log(addTotal);
+    dayTally.textContent = 'Total:   ' + dayTotal + '   cookies';
+    totalCookiesDay.append(dayTally);
+    console.log(dayTotal)
+
 }
