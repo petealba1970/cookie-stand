@@ -47,9 +47,10 @@ var cookiesSoldDul = document.getElementById('Cookiessold')
 
 //Creating arrays to store data for each store location
 var storeNow = [Seattle, Tokyo, Dubai, Paris, Lima];
+
 for (var storeIndex = 0; storeIndex < storeNow.length; storeIndex++) {
     var paragraph = document.createElement('p');
-
+    var dayTotal = 0;
     var currentLocation = storeNow[storeIndex];
     paragraph.textContent = currentLocation.name;
     StoreLocationDiv.append(paragraph);
@@ -65,15 +66,15 @@ for (var storeIndex = 0; storeIndex < storeNow.length; storeIndex++) {
         var customersPer = Customers();
 
         var cookiesHour = Math.round(customersPer * currentLocation.avg);
-
+        var addTotal = cookiesHour + dayTotal;
+        dayTotal = addTotal;
         var Hourstatement = document.createElement('li');
         var currentTime = StoreHours[EachHour];
         Hourstatement.textContent = currentTime + '   :    ' + cookiesHour + '      cookies.';
         StoreLocationDiv.append(Hourstatement);
-        console.log(StoreHours[EachHour]);
-        console.log(customersPer);
+
 
 
     }
-    console.log(currentLocation.avg);
+    console.log(addTotal);
 }
