@@ -63,12 +63,12 @@ for (var storeIndex = 0; storeIndex < storeNow.length; storeIndex++) {
 
         }
         var customersPer = Customers();
-        // function cookiesSold() {
-        // return customersPer * avg
+
+        var cookiesHour = Math.round(customersPer * currentLocation.avg);
 
         var Hourstatement = document.createElement('li');
         var currentTime = StoreHours[EachHour];
-        Hourstatement.textContent = currentTime + '  cookies.';
+        Hourstatement.textContent = currentTime + '   am   ' + cookiesHour + '  cookies.';
         StoreLocationDiv.append(Hourstatement);
         console.log(StoreHours[EachHour]);
         console.log(customersPer);
