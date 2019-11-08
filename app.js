@@ -1,4 +1,5 @@
 'use strict';
+
 var final = document.getElementById('store-table');
 
 var storeHours = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm'];
@@ -17,9 +18,6 @@ function renderHours() {
   final.append(tr);
 }
 
-
-
-
 //Constructor function for the different stores
 function Citylocation(name, min, max, avg) {
   this.name = name;
@@ -27,6 +25,7 @@ function Citylocation(name, min, max, avg) {
   this.maxCus = max;
   this.avgHour = avg;
   this.cookiePerhour = [];
+  this.dailyTotal = 0;
 
   this.randomCustomer = function () {
 
@@ -35,12 +34,17 @@ function Citylocation(name, min, max, avg) {
     return Math.floor(Math.random() * (this.maxCus - this.minCus + 1)) + this.minCus;
   };
   // store the cookies sold per hour in array
+
   this.cookieSoldHour = function () {
     for (var k = 0; k < storeHours.length; k++) {
       var hold = Math.round(this.randomCustomer() * this.avgHour);
       this.cookiePerhour.push(hold);
+      this.dailyTotal += hold;
     }
+    console.log(this.dailyTotal);
   };
+
+
 
   this.render = function (domReference) {
     var tr = document.createElement('tr');
@@ -55,15 +59,13 @@ function Citylocation(name, min, max, avg) {
     }
 
     td = document.createElement('td');
-    td.textContent = 'total';
+    td.textContent = this.dailyTotal;
     tr.append(td);
     domReference.append(tr);
   };
 
 
 }
-
-
 
 //adding new data for City location
 var seattle = new Citylocation('Seattle', 23, 65, 6.3);
@@ -72,9 +74,8 @@ var dubai = new Citylocation('Dubai', 11, 38, 3.7);
 var paris = new Citylocation('Paris', 20, 38, 2.3);
 var lima = new Citylocation('Lima', 2, 16, 4.6);
 
-console.log(seattle.cookiePerhour);
-
 var cityArray = [seattle, tokyo, dubai, paris, lima];
+
 
 var renderTable = function () {
   renderHours();
