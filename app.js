@@ -15,6 +15,9 @@ function renderHours() {
     th.textContent = storeHours[index];
     tr.append(th);
   }
+  var lastCell = document.createElement('th');
+  lastCell.textContent = 'Store Total';
+  tr.append(lastCell);
   final.append(tr);
 }
 
