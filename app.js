@@ -1,4 +1,3 @@
-
 'use strict';
 var final = document.getElementById('store-table');
 
@@ -19,7 +18,7 @@ function renderHours() {
 }
 renderHours();
 
-// variable storing array of location and the table
+
 
 //Constructor function for the different stores
 function Citylocation(name, min, max, avg) {
@@ -35,86 +34,104 @@ function Citylocation(name, min, max, avg) {
     this.minCus = Math.floor(this.minCus);
     return Math.floor(Math.random() * (this.maxCus - this.minCus + 1)) + this.minCus;
   };
-
+  // store the cookies sold per hour in array
   this.cookieSoldHour = function () {
     for (var k = 0; k < storeHours.length; k++) {
       var hold = Math.round(this.randomCustomer() * this.avgHour);
       this.cookiePerhour.push(hold);
-
     }
 
-  };
+    var tr = document.createElement('tr');
+    var firstCell = document.createElement('th');
+    firstCell.textContent = '';
+    tr.append(firstCell);
+
+    this.createRows = function () {
+      for (var k = 0; K < cityArray.length; k++) {
+        this.render = function (domReference) {
+
+          var tr =
+            document.createElement('tr');
+
+          var tdName =
+            document.createElement('td');
+
+          tdName.textContent = this.name;
+          tr.append(tdName);
+
+
+          for (var index = 0; index < storeHours.length; index++) {
+            var th = document.createElement('th');
+            th.textContent = this.cookiePerhour;
+            tr.append(th);
+          }
+        }
+      }
+      final.append(tr);
+
+    };
 
 
 
-  //Anchor to the dom
 
 
-  this.render = function (domReference) {
-
-    var tr =
-      document.createElement('tr');
-
-    var tdName =
-      document.createElement('td');
-
-    tdName.textContent = this.name;
-    tr.append(tdName);
+    //Anchor to the dom
 
 
+    this.render = function (domReference) {
 
+      var tr =
+        document.createElement('tr');
 
-    for (var index = 0; index < storeHours.length; index++) {
+      var tdName =
+        document.createElement('td');
 
-      var td = document.createElement('td');
-      tr.textContent = this.cookiePerhour[index];
-      tr.append('td');
-
-    }
-
-    td = document.createElement('td');
-
-    tdName.textContent = 'total';
-    tr.append(td);
-
-    domReference.append(tr);
-
-
-  };
-}
-
-
-//adding new data for City location
-var seattle = new Citylocation('Seattle', 23, 65, 6.3);
-var tokyo = new Citylocation('Tokyo', 3, 24, 1.2);
-var dubai = new Citylocation('Dubai', 11, 38, 3.7);
-var paris = new Citylocation('Paris', 20, 38, 2.3);
-var lima = new Citylocation('Lima', 2, 16, 4.6);
-
-console.log(seattle.cookiePerhour);
-
-var cityArray = [seattle, tokyo, dubai, paris, lima];
+      tdName.textContent = this.name;
+      tr.append(tdName);
 
 
 
-var cookiesHour = cookiesPerHour();
-console.log(cityArray[1].avgHour);
-console.log(cookiesHour);
 
-function renderCookiesold() {
-  var tr = document.createElement('tr');
-  var firstCell = document.createElement('th');
-  firstCell.textContent = '';
-  tr.append(firstCell);
+      for (var index = 0; index < storeHours.length; index++) {
 
-  for (var index = 0; index < storeHours.length; index++) {
-    var th = document.createElement('th');
-    th.textContent = storeHours[index];
-    tr.append(th);
-  }
-  final.append(tr);
-}
-renderHours();
+        var td = document.createElement('td');
+        tr.textContent = this.cookiePerhour[index];
+        tr.append('td');
+
+      }
+
+      td = document.createElement('td');
+
+      tdName.textContent = 'total';
+      tr.append(td);
+
+      domReference.append(tr);
+
+
+    };
+
+
+
+
+
+
+
+    //adding new data for City location
+    var seattle = new Citylocation('Seattle', 23, 65, 6.3);
+    var tokyo = new Citylocation('Tokyo', 3, 24, 1.2);
+    var dubai = new Citylocation('Dubai', 11, 38, 3.7);
+    var paris = new Citylocation('Paris', 20, 38, 2.3);
+    var lima = new Citylocation('Lima', 2, 16, 4.6);
+
+    console.log(seattle.cookiePerhour);
+
+    var cityArray = [seattle, tokyo, dubai, paris, lima];
+
+
+
+
+
+
 //  }
 //     }
 // }
@@ -185,4 +202,3 @@ renderHours();
 //     // // calling my functions to render
 //     // headerCreate();
 //     // fullRender();
-
