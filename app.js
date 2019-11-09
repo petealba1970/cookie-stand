@@ -87,16 +87,23 @@ var renderTable = function () {
   };
 
   //console.log(cityArray[1].cookiePerhour[0]);
-
+  var sumTotal = [];
   for (index = 0; index < storeHours.length; index++) {
     var storeTotal = 0;
     for (var k = 0; k < cityArray.length; k++) {
       storeTotal = storeTotal + cityArray[k].cookiePerhour[index];
-      console.log(cityArray[k].cookiePerhour[index]);
+      //   console.log(cityArray[k].cookiePerhour[index]);    
+      // sumTotal.push(storeTotal);
+      // console.log(cityArray[k].cookiePerhour[index]);
+
     };
-    console.log(storeTotal);
+    sumTotal.push(storeTotal);
+    //console.log(storeTotal);
+    console.log(sumTotal[2]);
   };
+
 };
+
 
 renderTable();
 
