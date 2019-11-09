@@ -99,8 +99,23 @@ var renderTable = function () {
     };
     sumTotal.push(storeTotal);
     //console.log(storeTotal);
-    console.log(sumTotal[2]);
+    // console.log(sumTotal[2]);
   };
+  // code to print last row
+  var tr = document.createElement('tr');
+  var lastRow = document.createElement('th');
+  lastRow.textContent = 'Total';
+  tr.append(lastRow);
+
+  for (var index = 0; index < storeHours.length; index++) {
+    var th = document.createElement('th');
+    th.textContent = sumTotal[index];
+    tr.append(th);
+    final.append(tr);
+
+  };
+
+
 
 };
 
