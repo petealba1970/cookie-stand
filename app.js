@@ -119,7 +119,6 @@ var renderTable = function () {
     };
   };
   renderstoreTotal();
-
 };
 renderTable();
 
