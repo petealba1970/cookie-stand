@@ -16,7 +16,7 @@ function renderHours() {
     tr.append(th);
   }
   var lastCell = document.createElement('th');
-  lastCell.textContent = 'Hr. Total';
+  lastCell.textContent = 'Daily Location Total';
   tr.append(lastCell);
   final.append(tr);
 }
@@ -102,24 +102,25 @@ var renderTable = function () {
     // console.log(sumTotal[2]);
   };
   // code to print last row
-  var tr = document.createElement('tr');
-  var lastRow = document.createElement('th');
-  lastRow.textContent = 'Total';
-  tr.append(lastRow);
+  function renderstoreTotal() {
 
-  for (var index = 0; index < storeHours.length; index++) {
-    var th = document.createElement('th');
-    th.textContent = sumTotal[index];
-    tr.append(th);
-    final.append(tr);
 
+    var tr = document.createElement('tr');
+    var lastRow = document.createElement('th');
+    lastRow.textContent = 'Totals';
+    tr.append(lastRow);
+
+    for (var index = 0; index < storeHours.length; index++) {
+      var th = document.createElement('th');
+      th.textContent = sumTotal[index];
+      tr.append(th);
+      final.append(tr);
+
+    };
   };
-
-
+  renderstoreTotal();
 
 };
-
-
 renderTable();
 
 
