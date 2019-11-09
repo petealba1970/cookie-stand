@@ -7,7 +7,7 @@ var storeHours = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00
 function renderHours() {
   var tr = document.createElement('tr');
   var firstCell = document.createElement('th');
-  firstCell.textContent = '';
+  firstCell.textContent = ' ';
   tr.append(firstCell);
 
   for (var index = 0; index < storeHours.length; index++) {
@@ -16,12 +16,11 @@ function renderHours() {
     tr.append(th);
   }
   var lastCell = document.createElement('th');
-  lastCell.textContent = 'Store Total';
+  lastCell.textContent = 'Hr. Total';
   tr.append(lastCell);
   final.append(tr);
 }
 
-//Constructor function for the different stores
 function Citylocation(name, min, max, avg) {
   this.name = name;
   this.minCus = min;
@@ -36,18 +35,15 @@ function Citylocation(name, min, max, avg) {
     this.minCus = Math.floor(this.minCus);
     return Math.floor(Math.random() * (this.maxCus - this.minCus + 1)) + this.minCus;
   };
-  // store the cookies sold per hour in array
 
   this.cookieSoldHour = function () {
     for (var k = 0; k < storeHours.length; k++) {
       var hold = Math.round(this.randomCustomer() * this.avgHour);
       this.cookiePerhour.push(hold);
       this.dailyTotal += hold;
-    }
-    console.log(this.dailyTotal);
+    };
+
   };
-
-
 
   this.render = function (domReference) {
     var tr = document.createElement('tr');
@@ -61,14 +57,16 @@ function Citylocation(name, min, max, avg) {
       tr.append(td);
     }
 
-    td = document.createElement('td');
+    for (var index = 0; index < storeHours.length; index++)
+
+      td = document.createElement('td');
     td.textContent = this.dailyTotal;
     tr.append(td);
     domReference.append(tr);
   };
 
 
-}
+};
 
 //adding new data for City location
 var seattle = new Citylocation('Seattle', 23, 65, 6.3);
@@ -82,12 +80,24 @@ var cityArray = [seattle, tokyo, dubai, paris, lima];
 
 var renderTable = function () {
   renderHours();
+
   for (var index = 0; index < cityArray.length; index++) {
     cityArray[index].cookieSoldHour();
     cityArray[index].render(final);
-  }
-  // this is where i call the totalling method
+  };
+
+  //console.log(cityArray[1].cookiePerhour[0]);
+
+  for (index = 0; index < storeHours.length; index++) {
+    var storeTotal = 0;
+    for (var k = 0; k < cityArray.length; k++) {
+      storeTotal = storeTotal + cityArray[k].cookiePerhour[index];
+      console.log(cityArray[k].cookiePerhour[index]);
+    };
+    console.log(storeTotal);
+  };
 };
+
 renderTable();
 
 
