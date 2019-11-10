@@ -122,6 +122,23 @@ var renderTable = function () {
 };
 renderTable();
 
+//event listener
+var form = document.getElementById('store-form');
+
+form.addEventListener('submit', function (event) {
+
+  event.preventDefault();
+
+  alert(event.target.name.value);
+  alert(event.target.weight.value);
+
+  var newCitylocation = new Citylocation(event.target.location.value[1, 1, 1, 1], event.target.minimum.value, event.target.maximum.value, event.target.average.value);
+
+  Citylocation.push(newCitylocation);
+
+  // cleanTablerenderAll();
+});
+
 
 
 
