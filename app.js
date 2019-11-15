@@ -2,7 +2,7 @@
 
 var final = document.getElementById('store-table');
 
-var storeHours = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm'];
+var storeHours = ['6:00am', '7:00am', '8:00am ', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 
 function renderHours() {
   var tr = document.createElement('tr');
@@ -77,33 +77,46 @@ var lima = new Citylocation('Lima', 2, 16, 4.6);
 
 var cityArray = [seattle, tokyo, dubai, paris, lima];
 
+//calculate and render totals
 
+function calculateAndRenderTotals(cityArray, domReference) {
+  var tr = document.createElement('tr');
+
+  var firstTD = document.createElement('td');
+  firstTD.textContent = "Cookie Totals";
+  tr.append(firstTD);
+
+  //new
+  for (var cookieIndex = 0; cookieIndex < cityArray[0].cookiePerhour.length; cookieIndex++) {
+    var total = 0;
+    for (var cityIndex = 0; cityIndex < cityArray.length; cityIndex++) {
+      total += cityArray[cityIndex].cookiePerhour[cityIndex];
+    }
+    var td = document.createElement('td');
+    td.textContent = total;
+    tr.append(td);
+  }
+  domReference.append(tr);
+}
 var renderTable = function () {
   renderHours();
 
   for (var index = 0; index < cityArray.length; index++) {
+
     cityArray[index].cookieSoldHour();
     cityArray[index].render(final);
   };
 
-  //console.log(cityArray[1].cookiePerhour[0]);
   var sumTotal = [];
   for (index = 0; index < storeHours.length; index++) {
     var storeTotal = 0;
     for (var k = 0; k < cityArray.length; k++) {
       storeTotal = storeTotal + cityArray[k].cookiePerhour[index];
-      //   console.log(cityArray[k].cookiePerhour[index]);    
-      // sumTotal.push(storeTotal);
-      // console.log(cityArray[k].cookiePerhour[index]);
-
     };
     sumTotal.push(storeTotal);
-    //console.log(storeTotal);
-    // console.log(sumTotal[2]);
   };
   // code to print last row
   function renderstoreTotal() {
-
 
     var tr = document.createElement('tr');
     var lastRow = document.createElement('th');
@@ -121,25 +134,47 @@ var renderTable = function () {
   renderstoreTotal();
 };
 renderTable();
+//Render full table
+// function cleanScreenAndRenderAll() {
+//   // Connect to the table
 
-//event listener
-var form = document.getElementById('store-form');
+//   var tableReference = document.getElementById('store-table');
 
-form.addEventListener('submit', function (event) {
+//   tableReference.innerHTML = "";
 
-  event.preventDefault();
+//   DAYS
+//   renderDaysOfTheWeek(tableReference);
 
-  alert(event.target.name.value);
-  alert(event.target.weight.value);
+//   // You absolutely need this loop
+//   for (var cityIndex = 0; cityIndex < cityArray.length; cityIndex++) {
+//     var currentCity = cityArray[cityIndex];
 
-  var newCitylocation = new Citylocation(event.target.location.value[1, 1, 1, 1], event.target.minimum.value, event.target.maximum.value, event.target.average.value);
+//     currentCity.render(tableReference);
+//   }
 
-  Citylocation.push(newCitylocation);
+//   calculateAndRenderTotals(cityArray, tableReference);
 
-  // cleanTablerenderAll();
-});
+  // var form = document.getElementById('store-form');
 
+  // form.addEventListener('submit', function (event) {
 
+  //   event.preventDefault();
+
+  //   var newCitylocation = new Citylocation(event.target.location.value[1, 1, 1, 1], event.target.minimum.value, event.target.maximum.value, event.target.average.value);
+
+  //   cityArray.push(newCitylocation);
+
+  //   cleanScreenAndRenderAll();
+  // });
+
+  // cleanScreenAndRenderAll();
+
+  // var paragraph = document.getElementById('click-me');
+
+  // paragraph.addEventListener('click', function (event) {
+  //   var table = document.getElementById('store-table');
+  //   table.innerHTML = '';
+  // });
 
 
 
